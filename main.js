@@ -6,7 +6,7 @@ let updatedLi;
 const onDelete = async (_id, li) => {
   await axios
     .delete(
-      `https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses/${_id}`
+      `https://crudcrud.com/api/cd0d3752870d4a84a1271451ea42529e/expenses/${_id}`
     )
 
     .then(() => li.remove())
@@ -25,7 +25,7 @@ const onEdit = (_id, expense, description, category, li) => {
   exp.value = expense;
   des.value = description;
   cat.value = category;
-  btn.value = "Edit Expense";
+  btn.value = "Add Expense";
 };
 const createExpense = ({ expense, description, category, _id }) => {
   const userList = document.getElementById("showlist");
@@ -42,9 +42,11 @@ const createExpense = ({ expense, description, category, _id }) => {
   del.style.margin = "4px";
   edit.style.margin = "4px";
 
-  li.appendChild(document.createTextNode(`${expense}  `));
-  li.appendChild(document.createTextNode(`${description}  `));
+  li.appendChild(document.createTextNode(`${expense}  -`));
+  li.appendChild(document.createTextNode(`${description}  -`));
   li.appendChild(document.createTextNode(`${category}`));
+
+  console.log(li);
   li.appendChild(del);
   li.appendChild(edit);
 
@@ -73,7 +75,7 @@ form.addEventListener("submit", async (e) => {
   if (btn.value === "Add Expense") {
     await axios
       .post(
-        "https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses",
+        "https://crudcrud.com/api/cd0d3752870d4a84a1271451ea42529e/expenses",
         obj
       )
       .then((res) => {
@@ -86,7 +88,7 @@ form.addEventListener("submit", async (e) => {
   } else {
     await axios
       .put(
-        `https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses/${updatedId}`,
+        `https://crudcrud.com/api/cd0d3752870d4a84a1271451ea42529e/expenses/${updatedId}`,
         obj
       )
       .then(() => {
@@ -104,6 +106,6 @@ form.addEventListener("submit", async (e) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await axios
-    .get("https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses")
+    .get("https://crudcrud.com/api/cd0d3752870d4a84a1271451ea42529e/expenses")
     .then((res) => showExpenses(res.data));
 });

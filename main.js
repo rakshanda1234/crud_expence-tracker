@@ -6,7 +6,7 @@ let updatedLi;
 const onDelete = async (_id, li) => {
   await axios
     .delete(
-      `https://crudcrud.com/api/d0788287bd0847c7a50be17b3253555e/expenses/${_id}`
+      `https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses/${_id}`
     )
 
     .then(() => li.remove())
@@ -39,8 +39,8 @@ const createExpense = ({ expense, description, category, _id }) => {
   edit.addEventListener("click", () =>
     onEdit(_id, expense, description, category, li)
   );
-  del.style.margin = "5px";
-  edit.style.margin = "5px";
+  del.style.margin = "4px";
+  edit.style.margin = "4px";
 
   li.appendChild(document.createTextNode(`${expense}  `));
   li.appendChild(document.createTextNode(`${description}  `));
@@ -73,7 +73,7 @@ form.addEventListener("submit", async (e) => {
   if (btn.value === "Add Expense") {
     await axios
       .post(
-        "https://crudcrud.com/api/d0788287bd0847c7a50be17b3253555e/expenses",
+        "https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses",
         obj
       )
       .then((res) => {
@@ -86,10 +86,10 @@ form.addEventListener("submit", async (e) => {
   } else {
     await axios
       .put(
-        `https://crudcrud.com/api/d0788287bd0847c7a50be17b3253555e/expenses/${updatedId}`,
+        `https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses/${updatedId}`,
         obj
       )
-      .then((res) => {
+      .then(() => {
         updatedLi.childNodes[0].nodeValue = obj.expense + "  ";
         updatedLi.childNodes[1].nodeValue = obj.description + "  ";
         updatedLi.childNodes[2].nodeValue = obj.category + "  ";
@@ -104,6 +104,6 @@ form.addEventListener("submit", async (e) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await axios
-    .get("https://crudcrud.com/api/d0788287bd0847c7a50be17b3253555e/expenses")
+    .get("https://crudcrud.com/api/6bf4fdd525ba42969b4ec6645043b96d/expenses")
     .then((res) => showExpenses(res.data));
 });
